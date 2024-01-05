@@ -52,7 +52,7 @@ def predict_survival(pclass, age, fare, is_alone, gender, embarked):
     y = df1['Survived']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=101)
     lr = LogisticRegression()
-    lr.fit(X_train, y_train)
+    lr.fit(X_train.values, y_train.values)
 
     result = lr.predict([[pclass, embarked, age, gender, fare, is_alone]])
 
@@ -81,7 +81,7 @@ def main():
         ('Male', 'Female'))
 
     embarked = st.radio(
-        'choose your gender',
+        'choose your place',
         ('Southampton', 'Queenstown', 'Cherbourg'))
     st.button("Submit", type="primary", on_click=predict_survival(pclass, age, fare,is_alone, gender, embarked))
 
